@@ -1,0 +1,27 @@
+name: Main
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.26.3
+          run_install: |
+            - recursive: true
+              args: [--frozen-lockfile, --strict-peer-dependencies]
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Run tests
+        run: pnpm run test
