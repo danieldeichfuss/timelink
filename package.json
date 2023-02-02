@@ -33,6 +33,7 @@
   "homepage": "https://github.com/danieldeichfuss/timelink#readme",
   "devDependencies": {
     "@types/jest": "^29.4.0",
+    "@types/node": "^18.11.19",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "eslint": "^8.33.0",
@@ -50,6 +51,10 @@
       "prettier --write --ignore-unknown",
       "eslint --cache"
     ]
+  },
+  "dependencies": {
+    "log-symbols": "^5.1.0",
+    "ora": "^6.1.2"
   },
   "engines": {
     "node": ">=14.16"
