@@ -17,5 +17,5 @@
     "quotes": ["error", "single"],
     "semi": ["error", "always"]
   },
-  "ignorePatterns": ["bin"]
+  "ignorePatterns": ["bin", "dist"]
 }

@@ -2,10 +2,11 @@
   "name": "@danieldeichfuss/timelink",
   "version": "0.0.1",
   "description": "The timer that runs everywhere and keeps you synchronised! ⏰🔗",
-  "main": "dist/index.js",
+  "exports": "./dist/index.js",
+  "type": "module",
   "bin": {
-    "@danieldeichfuss/timelink": "bin/timelink.js",
-    "timelink": "bin/timelink.js"
+    "@danieldeichfuss/timelink": "dist/index.js",
+    "timelink": "dist/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -13,7 +14,7 @@
   "scripts": {
     "build": "pnpm tsc",
     "test": "jest",
-    "run": "tsc-watch --onSuccess \"node bin/timelink.js\"",
+    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
     "prepare": "husky install"
   },
   "repository": {
@@ -49,5 +50,8 @@
       "prettier --write --ignore-unknown",
       "eslint --cache"
     ]
+  },
+  "engines": {
+    "node": ">=14.16"
   }
 }
