@@ -5,5 +5,5 @@ export default {
   transform: {
     '^.+\\.(ts|tsx)?$': ['ts-jest', { useESM: true }],
   },
-  extensionsToTreatAsEsm: ['.ts'],
+  clearMocks: true,
 };
