@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/danieldeichfuss/timelink#readme",
   "devDependencies": {
+    "@jest/globals": "^29.4.2",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.13.0",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
