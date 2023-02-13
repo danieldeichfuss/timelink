@@ -1,9 +1,12 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
-export default {
+const config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  transform: {
-    '^.+\\.(ts|tsx)?$': ['ts-jest', { useESM: true }],
+  moduleNameMapper: {
+    chalk: '<rootDir>/mocks/chalk.js',
   },
-  extensionsToTreatAsEsm: ['.ts'],
+  clearMocks: true,
 };
+
+// eslint-disable-next-line no-undef
+module.exports = config;
