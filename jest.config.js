@@ -2,9 +2,6 @@
 const config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  moduleNameMapper: {
-    chalk: '<rootDir>/mocks/chalk.js',
-  },
   clearMocks: true,
 };
 

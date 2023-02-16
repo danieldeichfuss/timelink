@@ -1,4 +1,5 @@
-import { displayError, displaySuccess } from './display/display';
+import { displayError, displaySpinner } from './display/display';
+import { startTimer } from './timer/timer';
 
 export function cli(args: string[]) {
   const rawInput = args[2];
@@ -20,7 +21,7 @@ export function cli(args: string[]) {
     return;
   }
 
-  displaySuccess(`Hello ${parsedInput}!`);
+  startTimer(parsedInput, displaySpinner);
 }
 
 cli(process.argv);

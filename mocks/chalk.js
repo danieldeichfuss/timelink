@@ -1,11 +1,10 @@
 // eslint-disable-next-line no-undef
 module.exports = {
-  green: function (text) {
-    return text;
-  },
+  green: (text) => text,
+  blue: (text) => text,
+  yellow: (text) => text,
+  red: (text) => text,
   bold: {
-    red: function (text) {
-      return text;
-    },
+    red: (text) => text,
   },
 };
