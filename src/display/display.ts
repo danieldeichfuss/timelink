@@ -2,27 +2,22 @@ import chalk from 'chalk';
 import ora from 'ora';
 import logSymbols from 'log-symbols';
 
-let spinner: ora.Ora | undefined;
+export function Spinner(text: string) {
+  const spinner = ora(chalk.green(text)).start();
 
-export function displaySpinner(text: string) {
-  if (spinner) {
-    spinner.text = chalk.green(text);
-  } else {
-    spinner = ora(chalk.green(text)).start();
-  }
-
-  return finishSpinner;
+  return {
+    update(text: string) {
+      spinner.text = chalk.green(text);
+    },
+    stop(text: string) {
+      spinner.stopAndPersist({
+        symbol: logSymbols.success,
+        text,
+      });
+    },
+  };
 }
 
-function finishSpinner() {
-  if (spinner) {
-    spinner.stopAndPersist({
-      symbol: logSymbols.success,
-      text: 'done',
-    });
-  }
-}
-
-export function displayError(text: string) {
+export function error(text: string) {
   console.error(chalk.bold.red(text));
 }
