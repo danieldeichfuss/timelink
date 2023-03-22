@@ -12,7 +12,7 @@ export function cli(args: string[]) {
 
   const parsedInput = parseInputToSeconds(rawInput);
 
-  if (Number.isNaN(parsedInput)) {
+  if (Number.isNaN(parsedInput) || parsedInput === undefined) {
     error('So sorry, I can only count numbers!');
     return;
   }
