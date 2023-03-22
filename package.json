@@ -56,6 +56,8 @@
     "node": ">=14.16"
   },
   "dependencies": {
-    "chalk": "^5.2.0"
+    "chalk": "^4.1.2",
+    "log-symbols": "^4.1.0",
+    "ora": "5.4.1"
   }
 }

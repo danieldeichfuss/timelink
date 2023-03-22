@@ -1,26 +1,30 @@
-import { displayError, displaySuccess } from './display/display';
+import { error, Spinner } from './display/display';
+import { startTimer } from './timer/timer';
+import { parseInputToSeconds } from './parse-input/parse-input';
 
 export function cli(args: string[]) {
   const rawInput = args[2];
-  const parsedInput = Number.parseInt(rawInput);
 
   if (!rawInput) {
-    displayError('Uuups! Tell us how long your timer should run.');
+    error('Uuups! Tell us how long your timer should run.');
     return;
   }
 
+  const parsedInput = parseInputToSeconds(rawInput);
+
   if (Number.isNaN(parsedInput)) {
-    displayError('So sorry, I can only count numbers!');
+    error('So sorry, I can only count numbers!');
+    return;
   }
 
   if (args.length > 3) {
-    displayError(
+    error(
       "Slow your 🐴, that's too much input. Just tell me the time and we are good 🤝."
     );
     return;
   }
 
-  displaySuccess(`Hello ${parsedInput}!`);
+  startTimer(parsedInput, Spinner);
 }
 
 cli(process.argv);
