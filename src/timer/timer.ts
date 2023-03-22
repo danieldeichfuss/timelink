@@ -1,3 +1,5 @@
+import notifier from 'node-notifier';
+
 export type TimerType = (duration: string) => {
   update: (time: string) => void;
   stop: (message: string) => void;
@@ -16,6 +18,11 @@ export function startTimer(duration: number, Timer: TimerType): void {
     if (durationLeft <= 0) {
       clearInterval(intervalId);
       timer.stop('Done');
+      notifier.notify({
+        title: 'DONE',
+        message: 'Timer is over!',
+        sound: 'Ping',
+      });
     }
   }, 1000);
 }
