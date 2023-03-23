@@ -1,19 +1,27 @@
 import notifier from 'node-notifier';
+import { parseInputToSeconds } from '../parse-input/parse-input';
+import { parseDurationToString } from '../parse-duration-to-string/parse-duration-to-string';
 
 export type TimerType = (duration: string) => {
   update: (time: string) => void;
   stop: (message: string) => void;
 };
 
-export function startTimer(duration: number, Timer: TimerType): void {
+export function startTimer(duration: string, Timer: TimerType): void {
+  const parsedDuration = parseInputToSeconds(duration);
+
+  if (parsedDuration === undefined || Number.isNaN(parsedDuration)) {
+    throw new Error('So sorry, I can only count numbers!');
+  }
+
   const startTime = Date.now();
-  const timer = Timer(duration.toString());
+  const timer = Timer(parseDurationToString(parsedDuration));
 
   const intervalId = setInterval(() => {
     const timePassedInSeconds = (Date.now() - startTime) / 1000;
-    const durationLeft = Math.round(duration - timePassedInSeconds);
+    const durationLeft = Math.round(parsedDuration - timePassedInSeconds);
 
-    timer.update(durationLeft.toString());
+    timer.update(parseDurationToString(durationLeft));
 
     if (durationLeft <= 0) {
       clearInterval(intervalId);
@@ -21,13 +29,11 @@ export function startTimer(duration: number, Timer: TimerType): void {
 
       let notificationCounter = 5;
 
-      const id = setInterval(() => {
+      const notificationIntervalId = setInterval(() => {
         if (notificationCounter <= 0) {
-          clearInterval(id);
-          console.log('stopped');
+          clearInterval(notificationIntervalId);
           return;
         }
-        console.log('notifiie');
 
         notificationCounter--;
         notifier.notify({

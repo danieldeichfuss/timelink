@@ -1,11 +1,11 @@
 jest.mock('./display/display');
 jest.mock('console');
-jest.mock('./timer/timer');
+jest.useFakeTimers();
 
 import { jest } from '@jest/globals';
 import { error, Spinner } from './display/display';
 import { cli } from './index';
-import { startTimer } from './timer/timer';
+import * as timer from './timer/timer';
 
 const baseArgs = [
   '/Users/danieldeichfuss/.volta/tools/image/node/18.13.0/bin/node',
@@ -14,13 +14,14 @@ const baseArgs = [
 
 beforeEach(() => {
   jest.restoreAllMocks();
-  jest.clearAllMocks();
 });
 
 it('should run successfully', () => {
+  const spyStartTimer = jest.spyOn(timer, 'startTimer');
+
   cli([...baseArgs, '10']);
 
-  expect(startTimer).toHaveBeenCalledWith(10, Spinner);
+  expect(spyStartTimer).toHaveBeenCalledWith('10', Spinner);
 });
 
 it('should show missing input error', () => {
