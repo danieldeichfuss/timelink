@@ -18,11 +18,24 @@ export function startTimer(duration: number, Timer: TimerType): void {
     if (durationLeft <= 0) {
       clearInterval(intervalId);
       timer.stop('Done');
-      notifier.notify({
-        title: 'DONE',
-        message: 'Timer is over!',
-        sound: 'Ping',
-      });
+
+      let notificationCounter = 5;
+
+      const id = setInterval(() => {
+        if (notificationCounter <= 0) {
+          clearInterval(id);
+          console.log('stopped');
+          return;
+        }
+        console.log('notifiie');
+
+        notificationCounter--;
+        notifier.notify({
+          title: 'DONE',
+          message: 'Timer is over!',
+          sound: 'Ping',
+        });
+      }, 1015);
     }
   }, 1000);
 }
