@@ -1,19 +1,11 @@
 import { error, Spinner } from './display/display';
 import { startTimer } from './timer/timer';
-import { parseInputToSeconds } from './parse-input/parse-input';
 
 export function cli(args: string[]) {
-  const rawInput = args[2];
+  const input = args[2];
 
-  if (!rawInput) {
+  if (!input) {
     error('Uuups! Tell us how long your timer should run.');
-    return;
-  }
-
-  const parsedInput = parseInputToSeconds(rawInput);
-
-  if (Number.isNaN(parsedInput) || parsedInput === undefined) {
-    error('So sorry, I can only count numbers!');
     return;
   }
 
@@ -24,7 +16,15 @@ export function cli(args: string[]) {
     return;
   }
 
-  startTimer(parsedInput, Spinner);
+  try {
+    startTimer(input, Spinner);
+  } catch (e) {
+    if (e instanceof Error) {
+      error(e.message);
+    } else {
+      error(`Unknown error: ${e}`);
+    }
+  }
 }
 
 cli(process.argv);
