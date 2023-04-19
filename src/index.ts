@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { error, Spinner } from './display/display';
 import { startTimer } from './timer/timer';
 
