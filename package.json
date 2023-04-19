@@ -1,10 +1,9 @@
 {
-  "name": "@danieldeichfuss/timelink",
-  "version": "0.0.1",
+  "name": "timelink",
+  "version": "0.0.3",
   "description": "The timer that runs everywhere and keeps you synchronised! ⏰🔗",
   "exports": "./dist/index.js",
   "bin": {
-    "@danieldeichfuss/timelink": "dist/index.js",
     "timelink": "dist/index.js"
   },
   "publishConfig": {
