@@ -1,6 +1,6 @@
 {
   "name": "timelink",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "The timer that runs everywhere and keeps you synchronised! ⏰🔗",
   "exports": "./dist/index.js",
   "bin": {
@@ -49,7 +49,8 @@
   "lint-staged": {
     "src/*": [
       "prettier --write --ignore-unknown",
-      "eslint --cache"
+      "eslint --cache",
+      "pnpm build"
     ]
   },
   "engines": {
